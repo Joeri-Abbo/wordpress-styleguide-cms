@@ -1,0 +1,39 @@
+version: "3.8"
+volumes:   # add this section
+  wordpress:    # does not need anything underneath this
+  wordpress_db:    # does not need anything underneath this
+services:
+  app:
+    depends_on:
+      - db
+    build: .
+    volumes:
+      - './plugins:/usr/src/wordpress/wp-content/plugins/'
+      - './themes/storefront:/usr/src/wordpress/wp-content/themes/storefront/'
+      - './themes/storefront-child-theme:/usr/src/wordpress/wp-content/themes/storefront-child-theme/'
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DEBUG=true
+      - DISABLE_SSL=true
+  db:
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    command: [
+      '--default_authentication_plugin=mysql_native_password',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci'
+    ]
+    volumes:
+      - wordpress_db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress

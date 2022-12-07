@@ -1,0 +1,24 @@
+{
+  "name": "cube/cube-post-types",
+  "type": "library",
+  "description": "A package to make the setup of WP posttypes easy.",
+  "keywords": [
+    "wordpress, custom post types"
+  ],
+  "authors": [
+    {
+      "name": "Joeri Abbo",
+      "email": "joeriabbo@hotmail.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Cube\\PostTypes\\": "PostType/",
+      "Cube\\Taxonomy\\": "Taxonomy/"
+    },
+    "files": [
+      "helpers.php"
+    ]
+  }
+}

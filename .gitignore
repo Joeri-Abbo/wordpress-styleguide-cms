@@ -1,0 +1,7 @@
+.env
+.idea
+.DS_Store
+/wp-app/
+/wp-app
+db_data
+/db_data

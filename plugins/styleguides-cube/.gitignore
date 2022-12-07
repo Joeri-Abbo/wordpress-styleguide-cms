@@ -1,0 +1,9 @@
+/vendor
+/.idea/workspace.xml
+/.idea/vcs.xml
+/.idea/styleguide-cube.iml
+/.idea/php.xml
+/.idea/modules.xml
+/.idea/misc.xml
+/.idea
+/composer.lock
