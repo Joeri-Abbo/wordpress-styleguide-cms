@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    uses: tracefy/github-actions-workflows/.github/workflows/workflow-release.yml@v1
+    uses: tracefy/github-actions-workflows/.github/workflows/workflow-release.yml@v2
     secrets:
       host: ${{ secrets.SSH_HOST_TCFPDCK003 }}
       registry: ${{ secrets.REGISTRY }} 

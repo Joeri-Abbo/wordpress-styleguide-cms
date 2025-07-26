@@ -6,11 +6,11 @@ on:
 
 jobs:
   clean:
-    uses: tracefy/github-actions-workflows/.github/workflows/utilities-clean.yml@v1
+    uses: tracefy/github-actions-workflows/.github/workflows/utilities-clean.yml@v2
   todo:
     needs:
       - clean
-    uses: tracefy/github-actions-workflows/.github/workflows/utilities-todo.yml@v1
+    uses: tracefy/github-actions-workflows/.github/workflows/utilities-todo.yml@v2
   tag:
     needs:
       - clean
@@ -21,7 +21,7 @@ jobs:
   deploy:
     needs:
       - tag
-    uses: tracefy/github-actions-workflows/.github/workflows/docker-deploy.yml@v1
+    uses: tracefy/github-actions-workflows/.github/workflows/docker-deploy.yml@v2
     secrets:
       host: ${{ secrets.SSH_HOST_TCFADCK001 }}
       registry: ${{ secrets.REGISTRY }} 
