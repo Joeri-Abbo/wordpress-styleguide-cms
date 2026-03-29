@@ -390,7 +390,7 @@ class TaxonomyAdmin {
 	 * @param string $type The taxonomy list type (checklist or dropdown)
 	 * @return null
 	 */
-	protected function do_meta_box( WP_Post $post, Walker $walker = null, $show_none = false, $type = 'checklist' ) {
+	protected function do_meta_box( WP_Post $post, ?Walker $walker = null, $show_none = false, $type = 'checklist' ) {
 
 		$taxonomy = $this->taxo->taxonomy;
 		$tax      = get_taxonomy( $taxonomy );

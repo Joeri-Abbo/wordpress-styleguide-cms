@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  php-lint:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ["8.1", "8.2", "8.3"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer
+
+      - name: Install composer dependencies (cube-post-types)
+        working-directory: plugins/cube-post-types
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Check PHP syntax
+        run: |
+          find plugins -name "*.php" -print0 | xargs -0 -P4 php -l | grep -v "^No syntax errors" || true
+          find plugins -name "*.php" -print0 | xargs -0 -P4 php -l | grep -c "Parse error" && exit 1 || echo "No parse errors found"
